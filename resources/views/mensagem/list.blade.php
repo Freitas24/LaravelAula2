@@ -1,8 +1,7 @@
 <h1>Lista de mensagens</h1>
 <hr>
-@foreach($mensagens as $msg)
-	<h3>{{$msg->autor}}</h3>
-	<p>{{$msg->titulo}}</p>
-	<p>{{$msg->texto}}</p>
+@foreach($mensagens as $mensagem)
+	<p><a href="/mensagens/{{$mensagem->id}}">{{$mensagem->titulo}}</a></p>
+	<p>{{$mensagem->autor}}</p>
 	<br>
 @endforeach

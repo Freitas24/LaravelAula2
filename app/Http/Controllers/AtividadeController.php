@@ -45,9 +45,10 @@ class AtividadeController extends Controller
      * @param  \App\Atividade  $atividade
      * @return \Illuminate\Http\Response
      */
-    public function show(Atividade $atividade)
+    public function show($id)
     {
-        //
+       $atividade = Atividade::find($id);
+       return view('atividade.show',['atividade' => $atividade]);
     }
 
     /**
