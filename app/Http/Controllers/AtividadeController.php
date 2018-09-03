@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Atividade;
 use Illuminate\Http\Request;
-use \Illuminate\Support\Facades\Validador;
+use \Illuminate\Support\Facades\Validator;
+
 
 class AtividadeController extends Controller
 {
@@ -67,6 +68,7 @@ class AtividadeController extends Controller
         return redirect('/atividades')->with('success', 'Atividade criada com sucesso!!');
     }
 
+
     /**
      * Display the specified resource.
      *
@@ -85,9 +87,10 @@ class AtividadeController extends Controller
      * @param  \App\Atividade  $atividade
      * @return \Illuminate\Http\Response
      */
-    public function edit(Atividade $atividade)
+    public function edit($id)
     {
-        //
+        $obj_Atividade = Atividade::find($id);
+        return view('atividade.edit',['atividade' => $obj_Atividade]);
     }
 
     /**

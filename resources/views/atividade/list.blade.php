@@ -15,7 +15,8 @@
 	<br>
 @endforeach
 
-
+<br>
+<a href="/atividades/create">Criar Atividade</a>
 
 
 

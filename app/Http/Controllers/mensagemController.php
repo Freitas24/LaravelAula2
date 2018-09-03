@@ -25,7 +25,7 @@ class mensagemController extends Controller
      */
     public function create()
     {
-        //
+        return view('mensagem.create');
     }
 
     /**
@@ -34,9 +34,35 @@ class mensagemController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+        
     public function store(Request $request)
     {
-        //
+        $messages = array(
+            'title.required' => 'É obrigatório um título para a mensagem',
+            'description.required' => 'É obrigatória uma descrição para a mensagem',
+            'scheduledto.required' => 'É obrigatório o cadastro da data/hora da mensagem',
+        );
+        //vetor com as especificações de validações
+        $regras = array(
+            'title' => 'required|string|max:255',
+            'description' => 'required',
+            'scheduledto' => 'required|string',
+        );
+        //cria o objeto com as regras de validação
+        $validador = Validator::make($request->all(), $regras, $messages);
+        //executa as validações
+        if ($validador->fails()) {
+            return redirect('mensagens/create')
+            ->withErrors($validador)
+            ->withInput($request->all);
+        }
+        //se passou pelas validações, processa e salva no banco...
+        $obj_mensagem = new mensagens();
+        $obj_mensagem->title =       $request['title'];
+        $obj_mensagem->description = $request['description'];
+        $obj_mensagem->scheduledto = $request['scheduledto'];
+        $obj_mensagemAtividade->save();
+        return redirect('/mensagens')->with('success', 'Mensagem criada com sucesso!!');
     }
 
     /**
