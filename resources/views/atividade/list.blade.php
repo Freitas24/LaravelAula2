@@ -8,12 +8,16 @@
   		</div>
   	</div>
   @endif
+  
 @foreach($atividades as $atividade)
 	<h3>{{$atividade->scheduledto}}</h3>
 	<p><a href="/atividades/{{$atividade->id}}">{{$atividade->title}}</a></p>
 	<p>{{$atividade->description}}</p>
+  <a href="/atividades/{{$atividade->id}}">Visualizar</a> 
+  <a href="/atividades/{{$atividade->id}}/edit">Editar</a> 
+  <a href="/atividades/{{$atividade->id}}/delete">Deletar</a> 
 	<br>
-@endforeach
+  @endforeach
 
 <br>
 <a href="/atividades/create">Criar Atividade</a>
