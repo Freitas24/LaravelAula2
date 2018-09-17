@@ -13,15 +13,19 @@
 	<h3>{{$atividade->scheduledto}}</h3>
 	<p><a href="/atividades/{{$atividade->id}}">{{$atividade->title}}</a></p>
 	<p>{{$atividade->description}}</p>
+  @auth
   <a href="/atividades/{{$atividade->id}}">Visualizar</a> 
   <a href="/atividades/{{$atividade->id}}/edit">Editar</a> 
   <a href="/atividades/{{$atividade->id}}/delete">Deletar</a> 
+  @endauth
 	<br>
   @endforeach
 
 <br>
-<a href="/atividades/create">Criar Atividade</a>
 
+@auth
+<a href="/atividades/create">Criar Nova Atividade</a>
+@endauth
 
 
 

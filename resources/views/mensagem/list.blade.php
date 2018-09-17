@@ -13,12 +13,18 @@
 	<h3>{{$mensagem->scheduledto}}</h3>
 	<p><a href="/mensagens/{{$mensagem->id}}">{{$mensagem->titulo}}</a></p>
 	<p>{{$mensagem->autor}}</p>
+	  @auth
 	<a href="/mensagens/{{$mensagem->id}}">Visualizar</a> 
 	<a href="/mensagens/{{$mensagem->id}}/edit">Editar</a> 
 	<a href="/mensagens/{{$mensagem->id}}/delete">Deletar</a> 
+	<br>
+	@endauth
 	<br>
 @endforeach
 
 <br>
 <br>
+
+ @auth
 <a href="/mensagens/create">Criar Nova Mensagem</a>
+@endauth

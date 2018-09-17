@@ -11,31 +11,37 @@
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
-Route::put('/atividades/{id}', 'AtividadeController@update');
-Route::put('/mensagens/{id}', 'mensagemController@update');
 
-Route::get('/atividades/create', 'AtividadeController@create');
-Route::get('/mensagens/create', 'mensagemController@create');
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/atividades/{id}/edit', 'AtividadeController@edit');
-Route::get('/mensagens/{id}/edit', 'mensagemController@edit');
+	Route::get('/atividades', 'AtividadeController@index');
+	Route::get('/mensagens', 'mensagemController@index');
 
-Route::get('/atividades/{id}/delete', 'AtividadeController@delete');
-Route::get('/mensagens/{id}/delete', 'mensagemController@delete');
+Route::group(['middleware' => 'auth'], function(){   
+	Route::put('/atividades/{id}', 'AtividadeController@update');
+	Route::put('/mensagens/{id}', 'mensagemController@update');
 
-Route::delete('/atividades/{id}', 'AtividadeController@destroy');
-Route::delete('/mensagens/{id}', 'mensagemController@destroy');
+	Route::get('/atividades/create', 'AtividadeController@create');
+	Route::get('/mensagens/create', 'mensagemController@create');
 
-Route::get('/atividades', 'AtividadeController@index');
-Route::get('/mensagens', 'mensagemController@index');
+	Route::get('/atividades/{id}/edit', 'AtividadeController@edit');
+	Route::get('/mensagens/{id}/edit', 'mensagemController@edit');
 
-Route::get('/atividades/{id}', 'AtividadeController@show');
-Route::get('/mensagens/{id}', 'mensagemController@show');
+	Route::get('/atividades/{id}/delete', 'AtividadeController@delete');
+	Route::get('/mensagens/{id}/delete', 'mensagemController@delete');
 
-Route::post('/atividades', 'AtividadeController@store');
-Route::post('/mensagens', 'mensagemController@store');
+	Route::delete('/atividades/{id}', 'AtividadeController@destroy');
+	Route::delete('/mensagens/{id}', 'mensagemController@destroy');
 
+	Route::get('/atividades/{id}', 'AtividadeController@show');
+	Route::get('/mensagens/{id}', 'mensagemController@show');
+
+	Route::post('/atividades', 'AtividadeController@store');
+	Route::post('/mensagens', 'mensagemController@store');
+});
 

@@ -62,6 +62,7 @@ class mensagemController extends Controller
         $obj_mensagem->titulo =       $request['titulo'];
         $obj_mensagem->texto = $request['texto'];
         $obj_mensagem->autor = $request['autor'];
+        $obj_mensagem->user_id = Auth::id();
         $obj_mensagem->save();
         return redirect('/mensagens')->with('success', 'Mensagem criada com sucesso!!');
     }
@@ -125,6 +126,7 @@ class mensagemController extends Controller
         $obj_mensagem->titulo = $request['titulo'];
         $obj_mensagem->texto = $request['texto'];
         $obj_mensagem->autor = $request['autor'];
+        $obj_mensagem->user_id = Auth::id();
         $obj_mensagem->save();
         return redirect('/mensagens')->with('success', 'Mensagem alterada com sucesso!!');
     }
