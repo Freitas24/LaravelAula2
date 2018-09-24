@@ -57,15 +57,17 @@ class mensagemController extends Controller
             ->withErrors($validador)
             ->withInput($request->all);
         }
-        //se passou pelas validações, processa e salva no banco...
-        $obj_mensagem = new mensagem();
-        $obj_mensagem->titulo =       $request['titulo'];
-        $obj_mensagem->texto = $request['texto'];
-        $obj_mensagem->autor = $request['autor'];
-        $obj_mensagem->user_id = Auth::id();
-        $obj_mensagem->save();
+    //se passou pelas validações, processa e salva no banco...
+        $obj_Mensagem = new Mensagem();
+        $obj_Mensagem->titulo =       $request['titulo'];
+        $obj_Mensagem->texto = $request['texto'];
+        $obj_Mensagem->autor = $request['autor'];
+        $obj_Mensagem->user_id = Auth::id();
+        $obj_Mensagem->atividade_id = $request['atividade_id'];
+        $obj_Mensagem->save();
         return redirect('/mensagens')->with('success', 'Mensagem criada com sucesso!!');
     }
+
 
     /**
      * Display the specified resource.
