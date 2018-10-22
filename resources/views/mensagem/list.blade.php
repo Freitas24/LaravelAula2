@@ -1,3 +1,7 @@
+
+@extends('layouts.app')
+
+@section('content')
 <h1>Lista de mensagens</h1>
 <hr>
 <!-- EXIBE MENSAGENS DE SUCESSO -->
@@ -30,3 +34,5 @@
  @auth
 <a href="/mensagens/create">Criar Nova Mensagem</a>
 @endauth
+
+@endsection

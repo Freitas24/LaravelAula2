@@ -1,3 +1,7 @@
+@extends('layouts.app')
+
+@section('content')
+
 <h1>Lista de Atividades</h1>
 <hr>
   <!-- EXIBE MENSAGENS DE SUCESSO -->
@@ -10,23 +14,27 @@
   @endif
   
 @foreach($atividades as $atividade)
-	<h3>{{$atividade->scheduledto}}</h3>
-	<p><a href="/atividades/{{$atividade->id}}">{{$atividade->title}}</a></p>
+	<p class="h5">{{\Carbon\Carbon::parse($atividade->scheduledto)->format('d/m/Y h:m')}}</p>
+	<p class="h2"><a href="/atividades/{{$atividade->id}}"><span class="badge badge-secondary">{{$atividade->title}}</span></a></p>
 	<p>{{$atividade->description}}</p>
   @auth
-  <a href="/atividades/{{$atividade->id}}">Visualizar</a> 
-  <a href="/atividades/{{$atividade->id}}/edit">Editar</a> 
-  <a href="/atividades/{{$atividade->id}}/delete">Deletar</a> 
+  <a class="btn btn-primary btn-sm" href="/atividades/{{$atividade->id}}">Visualizar</a> 
+  <a class="btn btn-primary btn-sm" href="/atividades/{{$atividade->id}}/edit">Editar</a> 
+  <a class="btn btn-primary btn-sm" href="/atividades/{{$atividade->id}}/delete">Deletar</a> 
   @endauth
 	<br>
+  <br>
+  <br>
   @endforeach
 
 <br>
 
 @auth
-<a href="/atividades/create">Criar Nova Atividade</a>
+<a class="btn btn-outline-primary btn-lg" href="/atividades/create">Criar Nova Atividade</a>
 @endauth
 
 
 
 <!-- \Carbon\Carbon::parse($atividade->scheduledto)->format('d/m/Y h:m')  -->
+
+@endsection
