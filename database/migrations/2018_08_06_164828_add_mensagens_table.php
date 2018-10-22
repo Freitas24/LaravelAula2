@@ -22,6 +22,12 @@ class AddMensagensTable extends Migration
             $table->integer('atividade_id')->unsigned();
             $table->timestamps();               //registro created_at e updated_at
         });
+
+        Schema::table('mensagens', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('atividade_id')->references('id')->on('atividades');
+        
+        });
     }
 
     /**
@@ -31,10 +37,6 @@ class AddMensagensTable extends Migration
      */
     public function down()
     {
-        Schema::table('mensagens', function (Blueprint $table) {
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('atividade_id')->references('id')->on('atividades');
         
-        });
     }
 }

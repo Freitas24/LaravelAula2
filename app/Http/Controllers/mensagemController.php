@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\mensagem;
+use App\Atividade;
 use Illuminate\Http\Request;
 use \Illuminate\Support\Facades\Validator;
+use \Illuminate\Support\Facades\Auth;
 
 class mensagemController extends Controller
 {
@@ -15,7 +17,7 @@ class mensagemController extends Controller
      */
     public function index()
     {
-        $listaMensagem = mensagem::all();
+        $listaMensagem = mensagem::paginate(5);
         return view('mensagem.list',['mensagens' => $listaMensagem]);
     }
 
@@ -26,7 +28,8 @@ class mensagemController extends Controller
      */
     public function create()
     {
-        return view('mensagem.create');
+        $atividades = Atividade::all();
+        return view ('mensagem.create',['atividades' => $atividades]);
     }
 
     /**

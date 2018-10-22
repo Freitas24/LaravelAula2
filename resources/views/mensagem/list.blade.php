@@ -22,6 +22,8 @@
 	<br>
 @endforeach
 
+{{$mensagens->links()}}
+
 <br>
 <br>
 
